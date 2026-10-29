@@ -95,7 +95,18 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  uint8_t i;
+	  	    uint16_t led_data = 0x0001;
 
+	  	    for(i = 0; i < 8; i++)
+	  	    {
+	  	      // 全部熄灭：PF0~PF7全部高电平
+	  	      HAL_GPIO_WritePin(GPIOF, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_SET);
+	  	      // 点亮当前这一个
+	  	      HAL_GPIO_WritePin(GPIOF, led_data, GPIO_PIN_RESET);
+	  	      HAL_Delay(300);
+	  	      led_data = led_data << 1;
+	  	    }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
